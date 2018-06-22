@@ -21,20 +21,30 @@
                             <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="eQp-jA-yqy">
                                 <rect key="frame" x="26" y="63" width="109" height="58"/>
                                 <color key="backgroundColor" red="1" green="0.4074905338" blue="0.98613727399999995" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <gestureRecognizers/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="109" id="7SA-3d-3Gr"/>
                                     <constraint firstAttribute="height" constant="58" id="Pxh-ZH-OKP"/>
                                 </constraints>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="mOa-av-XT0" appends="YES" id="1sy-69-NXy"/>
+                                </connections>
                             </view>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
-                        <outlet property="boxy" destination="eQp-jA-yqy" id="Z3u-9C-Npt"/>
+                        <outlet property="boxy" destination="eQp-jA-yqy" id="eAD-WB-hYl"/>
+                        <outletCollection property="boxy" destination="eQp-jA-yqy" collectionClass="NSMutableArray" id="rJG-je-g7h"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <panGestureRecognizer minimumNumberOfTouches="1" id="mOa-av-XT0">
+                    <connections>
+                        <action selector="handlePanWithRecognizer:" destination="BYZ-38-t0r" id="0Vr-ac-FEv"/>
+                    </connections>
+                </panGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="136.80000000000001" y="133.5832083958021"/>
         </scene>
