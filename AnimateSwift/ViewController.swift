@@ -31,6 +31,7 @@ class ViewController: UIViewController {
         self.containerView.bringSubview(toFront: self.drawer)
         UIView.animate(withDuration: 0.4, delay: 0, options: .curveEaseInOut, animations: {
             self.overlay.transform = CGAffineTransform(scaleX: containerWidth, y: containerHeight)
+            self.overlay.alpha = 0.2
             self.drawer.transform = reveal
         }, completion: { (finished: Bool) in
             self.drawerIsOpen = true
@@ -42,6 +43,7 @@ class ViewController: UIViewController {
         let containerWidth = self.containerView.bounds.width
         let containerHeight = self.containerView.bounds.height
         UIView.animate(withDuration: 0.4, delay: 0, options: .curveEaseInOut, animations: {
+            self.overlay.alpha = 0
             self.overlay.transform = CGAffineTransform(scaleX: containerWidth, y: containerHeight)
             self.drawer.transform = hide
         }, completion: { (finished: Bool) in
@@ -51,6 +53,9 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.overlay.alpha = 0
+        let makeFullWidth = CGAffineTransform(scaleX: self.containerView.bounds.width, y: 0)
+        self.overlay.transform = makeFullWidth
         self.containerView.addSubview(overlay)
         self.overlay.backgroundColor = UIColor.black
         // Do any additional setup after loading the view, typically from a nib.
