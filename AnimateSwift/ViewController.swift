@@ -14,15 +14,19 @@ class ViewController: UIViewController {
     @IBOutlet weak var boxy: UIView!
     
     let overlay = UIView(frame: CGRect(x:0, y:0, width: 10, height: 10))
-    var drawerIsOpen: Bool = true
+    var drawerIsOpen: Bool?
     
     @IBAction func animateDrawer(_ sender: Any) {
-        self.drawerIsOpen ? self.reveal() : self.hide(sentFrom: "drawer")
+        print("touched")
+        print(self.drawerIsOpen)
+        self.drawerIsOpen! ? self.hide() : self.reveal()
     }
     
     @objc func handleOverlayTap(tap: UITapGestureRecognizer) {
-       print("things")
+        print("ahdnleing")
+        self.hide()
     }
+    
     func reveal() {
         let reveal = CGAffineTransform(translationX: 0, y: 0)
         let containerWidth = self.containerView.bounds.width
@@ -38,20 +42,23 @@ class ViewController: UIViewController {
         })
     }
     
-    @objc func hide(sentFrom: String) {
+    func hide() {
         let hide = CGAffineTransform(translationX: 0, y: self.drawer.bounds.height)
         UIView.animate(withDuration: 0.4, delay: 0, options: .curveEaseInOut, animations: {
             self.overlay.alpha = 0
             self.drawer.transform = hide
-        }, completion: nil)
+        }, completion: { (finished: Bool) in
+            self.drawerIsOpen = true
+            let containerWidth = self.containerView.bounds.width
+            self.overlay.transform = CGAffineTransform(scaleX: containerWidth, y: 0)
+            self.drawerIsOpen = false
+        })
         
-        let containerWidth = self.containerView.bounds.width
-        self.overlay.transform = CGAffineTransform(scaleX: containerWidth, y: 0)
-        self.drawerIsOpen = false
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.drawerIsOpen = true
         self.overlay.alpha = 0
         let makeFullWidth = CGAffineTransform(scaleX: self.containerView.bounds.width, y: 0)
         self.overlay.transform = makeFullWidth
