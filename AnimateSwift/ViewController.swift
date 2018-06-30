@@ -13,23 +13,24 @@ class ViewController: UIViewController {
     @IBOutlet weak var drawer: UIView!
     @IBOutlet weak var boxy: UIView!
     
+    let overlay = UIView(frame: CGRect(x:0, y:0, width: 10, height: 10))
     var drawerIsOpen: Bool = true
     
     @IBAction func animateDrawer(_ sender: Any) {
         print("origin", drawer.bounds.origin)
         print("height", drawer.bounds.height)
         print("size", drawer.bounds.size)
-        self.drawerIsOpen ? self.hide() : self.reveal()
-        print(self.drawerIsOpen)
-//        UIView.animate(withDuration: 1, delay: 0, usingSpringWithDamping: 0.3, initialSpringVelocity: 0, options: .curveEaseInOut, animations: {
-//            self.drawer.center.y = self.drawer.bounds.height
-//            self.drawer.transform = makeNotTheSame
-//        }, completion: nil)
+        self.drawerIsOpen ? self.reveal() : self.hide()
     }
     
     func reveal() {
         let reveal = CGAffineTransform(translationX: 0, y: 0)
+        let containerWidth = self.containerView.bounds.width
+        let containerHeight = self.containerView.bounds.height
+        
+        self.containerView.bringSubview(toFront: self.drawer)
         UIView.animate(withDuration: 0.4, delay: 0, options: .curveEaseInOut, animations: {
+            self.overlay.transform = CGAffineTransform(scaleX: containerWidth, y: containerHeight)
             self.drawer.transform = reveal
         }, completion: { (finished: Bool) in
             self.drawerIsOpen = true
@@ -38,7 +39,10 @@ class ViewController: UIViewController {
     
     func hide() {
         let hide = CGAffineTransform(translationX: 0, y: self.drawer.bounds.height)
+        let containerWidth = self.containerView.bounds.width
+        let containerHeight = self.containerView.bounds.height
         UIView.animate(withDuration: 0.4, delay: 0, options: .curveEaseInOut, animations: {
+            self.overlay.transform = CGAffineTransform(scaleX: containerWidth, y: containerHeight)
             self.drawer.transform = hide
         }, completion: { (finished: Bool) in
             self.drawerIsOpen = false
@@ -47,12 +51,15 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.containerView.addSubview(overlay)
+        self.overlay.backgroundColor = UIColor.black
         // Do any additional setup after loading the view, typically from a nib.
     }
     
     @IBAction func handlePan(recognizer: UIPanGestureRecognizer) {
         let translation = recognizer.translation(in: self.view)
         
+
         if let view = recognizer.view {
             view.center = CGPoint(x: view.center.x + translation.x, y: view.center.y + translation.y)
         }
