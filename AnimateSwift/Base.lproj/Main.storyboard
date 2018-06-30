@@ -30,12 +30,34 @@
                                     <outletCollection property="gestureRecognizers" destination="mOa-av-XT0" appends="YES" id="1sy-69-NXy"/>
                                 </connections>
                             </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fVE-G2-uxt">
+                                <rect key="frame" x="0.0" y="424" width="375" height="243"/>
+                                <color key="backgroundColor" red="0.54932672999999999" green="0.62218059719999996" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8Tp-36-PR6">
+                                <rect key="frame" x="164" y="77" width="46" height="30"/>
+                                <state key="normal" title="Button"/>
+                                <connections>
+                                    <action selector="animateDrawer:" destination="BYZ-38-t0r" eventType="touchUpInside" id="gZA-Gr-rja"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="8Tp-36-PR6" secondAttribute="trailing" constant="165" id="HU4-iN-CW3"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="fVE-G2-uxt" secondAttribute="bottom" id="ZBs-NK-FPW"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="fVE-G2-uxt" secondAttribute="trailing" id="gX0-ec-uRQ"/>
+                            <constraint firstItem="8Tp-36-PR6" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="57" id="mdf-id-KJi"/>
+                            <constraint firstItem="fVE-G2-uxt" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="404" id="tx6-Gc-hWr"/>
+                            <constraint firstItem="fVE-G2-uxt" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="vWW-cf-cuw"/>
+                            <constraint firstItem="8Tp-36-PR6" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="164" id="ynY-Ft-jvZ"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
                         <outlet property="boxy" destination="eQp-jA-yqy" id="eAD-WB-hYl"/>
+                        <outlet property="containerView" destination="8bC-Xf-vdC" id="vWU-gG-FwS"/>
+                        <outlet property="drawer" destination="fVE-G2-uxt" id="tmU-hi-DMe"/>
                         <outletCollection property="boxy" destination="eQp-jA-yqy" collectionClass="NSMutableArray" id="rJG-je-g7h"/>
                     </connections>
                 </viewController>

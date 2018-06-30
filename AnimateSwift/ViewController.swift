@@ -9,7 +9,23 @@
 import UIKit
 
 class ViewController: UIViewController {
-
+    @IBOutlet var containerView: UIView!
+    @IBOutlet weak var drawer: UIView!
+    
+    @IBAction func animateDrawer(_ sender: Any) {
+        print("origin", drawer.bounds.origin)
+        print("height", drawer.bounds.height)
+        print("size", drawer.bounds.size)
+        let makeNotTheSame = CGAffineTransform(translationX: 0, y: self.containerView.bounds.height)
+        let increment = CGAffineTransform(translationX: 0, y: 100)
+        UIView.animate(withDuration: 1, delay: 0, options: .curveEaseInOut, animations: {
+            self.drawer.transform = increment
+        }, completion: nil)
+//        UIView.animate(withDuration: 1, delay: 0, usingSpringWithDamping: 0.3, initialSpringVelocity: 0, options: .curveEaseInOut, animations: {
+//            self.drawer.center.y = self.drawer.bounds.height
+//            self.drawer.transform = makeNotTheSame
+//        }, completion: nil)
+    }
     @IBOutlet weak var boxy: UIView!
     override func viewDidLoad() {
         super.viewDidLoad()
