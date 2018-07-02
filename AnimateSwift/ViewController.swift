@@ -27,7 +27,7 @@ class ViewController: UIViewController {
         
         self.containerView.bringSubview(toFront: self.drawer)
         self.overlay.transform = CGAffineTransform(scaleX: containerWidth, y: containerHeight)
-        UIView.animate(withDuration: 0.4, delay: 0, options: .curveEaseInOut, animations: {
+        UIView.animate(withDuration: 0.2, delay: 0, options: .curveEaseInOut, animations: {
             self.overlay.alpha = 0.2
             self.drawer.transform = reveal
         }, completion: { (finished: Bool) in
@@ -37,7 +37,7 @@ class ViewController: UIViewController {
     
     func hide() {
         let hide = CGAffineTransform(translationX: 0, y: self.drawer.bounds.height)
-        UIView.animate(withDuration: 0.4, delay: 0, options: .curveEaseInOut, animations: {
+        UIView.animate(withDuration: 0.2, delay: 0, options: .curveEaseInOut, animations: {
             self.overlay.alpha = 0
             self.drawer.transform = hide
         }, completion: { (finished: Bool) in
@@ -55,8 +55,6 @@ class ViewController: UIViewController {
     
     @objc func handleOverlayPan(pan: UIPanGestureRecognizer) {
         let translation = pan.translation(in: self.overlay)
-        print(pan.state == UIGestureRecognizerState.ended)
-        print(type(of: translation))
         self.drawer.transform = CGAffineTransform(translationX: 0, y: translation.y * self.drawer.bounds.height)
         self.overlay.alpha = 0.2 - (translation.y / 5)
         if (pan.state == UIGestureRecognizerState.ended) {
