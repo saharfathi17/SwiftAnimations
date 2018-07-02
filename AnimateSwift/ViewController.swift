@@ -55,9 +55,20 @@ class ViewController: UIViewController {
     
     @objc func handleOverlayPan(pan: UIPanGestureRecognizer) {
         let translation = pan.translation(in: self.overlay)
-        
-        print(translation.y)
+        print(pan.state == UIGestureRecognizerState.ended)
+        print(type(of: translation))
         self.drawer.transform = CGAffineTransform(translationX: 0, y: translation.y * self.drawer.bounds.height)
+        if (pan.state == UIGestureRecognizerState.ended) {
+           self.setDrawerOnGestureEnd(translation: translation)
+        }
+    }
+    
+    func setDrawerOnGestureEnd(translation: CGPoint) {
+        if (translation.y <= 0.25) {
+            self.reveal()
+        } else {
+            self.hide()
+        }
     }
     
     func addShadowToDrawer() {
@@ -76,10 +87,8 @@ class ViewController: UIViewController {
         self.overlay.transform = makeFullWidth
         self.containerView.addSubview(overlay)
         self.overlay.backgroundColor = UIColor.black
-//        let overlayHide = UITapGestureRecognizer(target: self, action: #selector(handleOverlayTap))
         let overlayPanSwipe = UIPanGestureRecognizer(target: self, action: #selector(handleOverlayPan))
         self.containerView.addGestureRecognizer(overlayPanSwipe)
-        // Do any additional setup after loading the view, typically from a nib.
     }
     
     @IBAction func handlePan(recognizer: UIPanGestureRecognizer) {
