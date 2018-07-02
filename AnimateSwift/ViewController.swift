@@ -58,6 +58,7 @@ class ViewController: UIViewController {
         print(pan.state == UIGestureRecognizerState.ended)
         print(type(of: translation))
         self.drawer.transform = CGAffineTransform(translationX: 0, y: translation.y * self.drawer.bounds.height)
+        self.overlay.alpha = 0.2 - (translation.y / 5)
         if (pan.state == UIGestureRecognizerState.ended) {
            self.setDrawerOnGestureEnd(translation: translation)
         }
@@ -89,6 +90,8 @@ class ViewController: UIViewController {
         self.overlay.backgroundColor = UIColor.black
         let overlayPanSwipe = UIPanGestureRecognizer(target: self, action: #selector(handleOverlayPan))
         self.containerView.addGestureRecognizer(overlayPanSwipe)
+        let overlayHide = UITapGestureRecognizer(target: self, action: #selector(handleOverlayTap))
+        self.overlay.addGestureRecognizer(overlayHide)
     }
     
     @IBAction func handlePan(recognizer: UIPanGestureRecognizer) {
