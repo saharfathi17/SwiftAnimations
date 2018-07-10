@@ -55,11 +55,14 @@ class ViewController: UIViewController {
     
     @objc func handleOverlayPan(pan: UIPanGestureRecognizer) {
         let translation = pan.translation(in: self.overlay)
-        self.drawer.transform = CGAffineTransform(translationX: 0, y: translation.y * self.drawer.bounds.height)
-        self.overlay.alpha = 0.2 - (translation.y / 5)
-        if (pan.state == UIGestureRecognizerState.ended) {
-           self.setDrawerOnGestureEnd(translation: translation)
+        if (translation.y >= 0) {
+            self.drawer.transform = CGAffineTransform(translationX: 0, y: translation.y * self.drawer.bounds.height)
+            self.overlay.alpha = 0.2 - (translation.y / 5)
         }
+        if (pan.state == UIGestureRecognizerState.ended) {
+            self.setDrawerOnGestureEnd(translation: translation)
+        }
+        print(translation.y)
     }
     
     func setDrawerOnGestureEnd(translation: CGPoint) {
