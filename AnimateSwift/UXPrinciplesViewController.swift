@@ -11,14 +11,21 @@ import UIKit
 class UXPrinciplesViewController: UIViewController {
     @IBOutlet weak var easingBox: UIView!
     
-    @IBAction func moveForward(_ sender: Any) {
-        let moveRight = CGAffineTransform(translationX: , y: 0)
+    @IBAction func moveForward(_ sender: UIButton) {
+        let constraint = sender.superview!.constraints[0].constant
+        let bounds = UIScreen.main.bounds
+        let boxBounds = easingBox.bounds.width
+        
+        let moveRight = CGAffineTransform(translationX: bounds.size.width - (constraint * 2) - boxBounds, y: 0)
         UIView.animate(withDuration: 0.5, delay: 0, options: .curveEaseInOut, animations: {
             self.easingBox.transform = moveRight
         })
     }
     @IBAction func moveBackward(_ sender: Any) {
-       print("moving backward")
+        let moveLeft = CGAffineTransform(translationX: 0, y: 0)
+        UIView.animate(withDuration: 0.5, delay: 0, options: .curveEaseInOut, animations: {
+            self.easingBox.transform = moveLeft
+        })
     }
     
     override func viewDidLoad() {
