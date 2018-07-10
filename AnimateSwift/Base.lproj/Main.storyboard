@@ -120,7 +120,6 @@
                                 <rect key="frame" x="22" y="214" width="56" height="30"/>
                                 <state key="normal" title="Forward"/>
                                 <connections>
-                                    <action selector="moveForward:" destination="gPE-8W-jYP" eventType="touchUpInside" id="hix-Ga-G6T"/>
                                     <action selector="parallaxForward:" destination="gPE-8W-jYP" eventType="touchUpInside" id="OUd-bl-LDB"/>
                                 </connections>
                             </button>
@@ -128,7 +127,6 @@
                                 <rect key="frame" x="284" y="214" width="68" height="30"/>
                                 <state key="normal" title="Backward"/>
                                 <connections>
-                                    <action selector="moveBackward:" destination="gPE-8W-jYP" eventType="touchUpInside" id="lmn-No-Wn4"/>
                                     <action selector="parallaxBackward:" destination="gPE-8W-jYP" eventType="touchUpInside" id="TZF-hK-ieG"/>
                                 </connections>
                             </button>
