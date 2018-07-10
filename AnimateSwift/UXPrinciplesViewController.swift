@@ -10,7 +10,29 @@ import UIKit
 
 class UXPrinciplesViewController: UIViewController {
     @IBOutlet weak var easingBox: UIView!
+    @IBOutlet weak var topParallax: UIView!
+    @IBOutlet weak var bottomParallax: UIView!
     
+    @IBAction func parallaxForward(_ sender: UIButton) {
+        let constraint = sender.superview!.constraints[0].constant
+        let bounds = UIScreen.main.bounds
+        let boxBounds = topParallax.bounds.width
+        
+        let moveRight = CGAffineTransform(translationX: bounds.size.width - (constraint * 2) - boxBounds, y: 0)
+        let parallaxRight = CGAffineTransform(translationX: (bounds.size.width - (constraint * 2) - boxBounds) * 0.1, y: 0)
+        UIView.animate(withDuration: 0.5, delay: 0, options: .curveEaseInOut, animations: {
+            self.topParallax.transform = moveRight
+            self.bottomParallax.transform = parallaxRight
+        })
+    }
+    @IBAction func parallaxBackward(_ sender: Any) {
+        let moveLeft = CGAffineTransform(translationX: 0, y: 0)
+        let parallaxLeft = CGAffineTransform(translationX: 0, y: 0)
+        UIView.animate(withDuration: 0.5, delay: 0, options: .curveEaseInOut, animations: {
+            self.topParallax.transform = moveLeft
+            self.bottomParallax.transform = parallaxLeft
+        })
+    }
     @IBAction func moveForward(_ sender: UIButton) {
         let constraint = sender.superview!.constraints[0].constant
         let bounds = UIScreen.main.bounds

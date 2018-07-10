@@ -116,22 +116,54 @@
                                     <constraint firstAttribute="height" constant="55" id="eIa-Oh-eC2"/>
                                 </constraints>
                             </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ruj-9j-gs5">
+                                <rect key="frame" x="22" y="214" width="56" height="30"/>
+                                <state key="normal" title="Forward"/>
+                                <connections>
+                                    <action selector="moveForward:" destination="gPE-8W-jYP" eventType="touchUpInside" id="hix-Ga-G6T"/>
+                                    <action selector="parallaxForward:" destination="gPE-8W-jYP" eventType="touchUpInside" id="OUd-bl-LDB"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="74I-Lt-GQY">
+                                <rect key="frame" x="284" y="214" width="68" height="30"/>
+                                <state key="normal" title="Backward"/>
+                                <connections>
+                                    <action selector="moveBackward:" destination="gPE-8W-jYP" eventType="touchUpInside" id="lmn-No-Wn4"/>
+                                    <action selector="parallaxBackward:" destination="gPE-8W-jYP" eventType="touchUpInside" id="TZF-hK-ieG"/>
+                                </connections>
+                            </button>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7FQ-dg-N8c">
+                                <rect key="frame" x="61" y="269" width="252" height="134"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.94176979567193742" green="0.94176979567193742" blue="0.94176979567193742" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                            </view>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="00j-Fs-HE8">
+                                <rect key="frame" x="16" y="277" width="212" height="112"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="Ruj-9j-gs5" firstAttribute="top" secondItem="b3W-Ql-xCt" secondAttribute="top" constant="194" id="0xR-FK-fNg"/>
+                            <constraint firstItem="Ruj-9j-gs5" firstAttribute="leading" secondItem="b3W-Ql-xCt" secondAttribute="leading" constant="22" id="8jD-Oj-lrk"/>
                             <constraint firstItem="ALl-6K-cKJ" firstAttribute="top" secondItem="b3W-Ql-xCt" secondAttribute="top" id="FjY-F3-ft4"/>
                             <constraint firstItem="7Vu-dJ-lfm" firstAttribute="top" secondItem="b3W-Ql-xCt" secondAttribute="top" constant="107" id="KzH-cf-8FP"/>
+                            <constraint firstItem="74I-Lt-GQY" firstAttribute="top" secondItem="b3W-Ql-xCt" secondAttribute="top" constant="194" id="Mtu-6r-OuB"/>
                             <constraint firstItem="ALl-6K-cKJ" firstAttribute="leading" secondItem="b3W-Ql-xCt" secondAttribute="leading" constant="29" id="TTS-ls-96T"/>
                             <constraint firstItem="sRw-Wq-CSy" firstAttribute="top" secondItem="b3W-Ql-xCt" secondAttribute="top" constant="48" id="VvY-4P-2Bg"/>
                             <constraint firstItem="b3W-Ql-xCt" firstAttribute="trailing" secondItem="sRw-Wq-CSy" secondAttribute="trailing" constant="16" id="iPb-kx-r4r"/>
                             <constraint firstItem="ChC-nS-UFJ" firstAttribute="top" secondItem="b3W-Ql-xCt" secondAttribute="top" constant="48" id="m6w-Uh-jTu"/>
                             <constraint firstItem="ChC-nS-UFJ" firstAttribute="leading" secondItem="b3W-Ql-xCt" secondAttribute="leading" constant="29" id="osA-hI-3Cq"/>
+                            <constraint firstItem="b3W-Ql-xCt" firstAttribute="trailing" secondItem="74I-Lt-GQY" secondAttribute="trailing" constant="23" id="sNs-sp-dzJ"/>
                             <constraint firstItem="7Vu-dJ-lfm" firstAttribute="leading" secondItem="b3W-Ql-xCt" secondAttribute="leading" constant="29" id="sdY-3p-6le"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="b3W-Ql-xCt"/>
                     </view>
                     <connections>
+                        <outlet property="bottomParallax" destination="7FQ-dg-N8c" id="PEC-2M-bq5"/>
                         <outlet property="easingBox" destination="7Vu-dJ-lfm" id="ZCm-Yz-OHr"/>
+                        <outlet property="topParallax" destination="00j-Fs-HE8" id="kEQ-Zb-k0V"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yA8-in-aw8" userLabel="First Responder" sceneMemberID="firstResponder"/>
